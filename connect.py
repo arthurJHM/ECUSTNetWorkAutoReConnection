@@ -5,8 +5,8 @@ from bs4 import BeautifulSoup
 import time
 import requests
 
-username_str = "Y45190292"
-password_str = "S04111336"
+username_str = "校园网账号"
+password_str = "校园网密码"
 
 class Login:
     def login(self):
