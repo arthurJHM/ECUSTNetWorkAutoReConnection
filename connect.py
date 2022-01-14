@@ -1,5 +1,5 @@
 #coding:utf-8
-__author__ = 'zcy'
+__author__ = 'arthur'
 from selenium import webdriver
 from bs4 import BeautifulSoup
 import time
