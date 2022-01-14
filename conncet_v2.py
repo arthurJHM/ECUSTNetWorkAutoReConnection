@@ -1,34 +1,18 @@
 #coding:utf-8
 __author__ = 'arthur'
-from selenium import webdriver
 from bs4 import BeautifulSoup
 import time
 import requests
-
-username_str = "校园网账号"
-password_str = "校园网密码"
+import os
 
 class Login:
     def login(self):
-        global driver
         try:
-            driver = webdriver.Firefox()
-            driver.get("http://login.ecust.edu.cn/")
-            time.sleep(3)
-            print("ok")
-            username_input = driver.find_element_by_id("username")
-            password_input = driver.find_element_by_id("password")
-            login_button = driver.find_element_by_class_name("bottom")
-            radio = driver.find_elements_by_name("opt")
-
-            username_input.send_keys(username_str)
-            password_input.send_keys(password_str)
-            radio[0].click()
-            login_button.click()
+           os.system(''' curl -k -X POST -i -d "action=login&username=[学号]&password={B}[这部分经过编码，所以请直接从原始url中拷贝urlencoded(base64([密码]))]&ac_id=18&user_ip=&nas_ip=&user_mac=&ajax=1" http://172.20.13.100:804/include/auth_action.php''')
         except:
             print(self.getCurrentTime(), u"登陆函数异常")
         finally:
-            driver.close()
+            pass
 
     #获取当前时间
     def getCurrentTime(self):
@@ -63,7 +47,7 @@ class Login:
                     except:
                         print(self.getCurrentTime(), u"浏览器出了bug")
                     finally:
-                        time.sleep(2)
+                        time.sleep(5)
                         if self.canConnect():
                             print(self.getCurrentTime(), u"重新登陆成功")
                         else:
@@ -72,6 +56,6 @@ class Login:
                 else:
                     print (self.getCurrentTime(), u"一切正常...")
                     time.sleep(5)
-                time.sleep(1)
+
 login = Login()
 login.main()
